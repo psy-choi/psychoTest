@@ -29,9 +29,9 @@ public class petLossDepressTest implements pyschoTest{
     public String diagnoseResult(List<?> responses) {
         Integer totalScore = diagnoseTotalScore(responses) - 16;
         if (totalScore > 36.6) {
-            return diagnosis.NORMAL.toString();
-        } else {
             return diagnosis.PETLOSS.toString();
+        } else {
+            return diagnosis.NORMAL.toString();
         }
     }
 

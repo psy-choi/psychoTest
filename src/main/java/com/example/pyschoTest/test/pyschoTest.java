@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface pyschoTest {
 
-    Integer diagnoseTotalScore(List<?> responses);
+    public Integer diagnoseTotalScore(List<?> responses);
 
-    String diagnoseResult(List<?> responses);
+    public String diagnoseResult(List<?> responses);
 
-    Integer countQuestions();
+    public Integer countQuestions();
 
 }

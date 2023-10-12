@@ -2,6 +2,7 @@ package com.example.pyschoTest.exception;
 
 
 import com.example.pyschoTest.dto.ResponseDto;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +17,32 @@ public class exceptionHandler {
 
     @ExceptionHandler(customException.class)
     protected ResponseEntity customExceptionHandler(customException exception) {
+        log.error(exception.getMessage());
         return new ResponseEntity(new ResponseDto(-1, exception.getMessage(), 0), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodNotAllowedException.class)
     protected ResponseEntity methodnotAllowedExceptionHandler(MethodNotAllowedException exception){
+        log.error(exception.getMessage());
         return new ResponseEntity(new ResponseDto(-1, exception.getMessage(), 0), HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     protected ResponseEntity httpMethodnotAllowedExceptionHandler(HttpRequestMethodNotSupportedException exception){
+        log.error(exception.getMessage());
         return new ResponseEntity(new ResponseDto(-1, exception.getMessage(), 0), HttpStatus.METHOD_NOT_ALLOWED);
     }
+
+    @ExceptionHandler(InvalidFormatException.class)
+    protected ResponseEntity invalidFormatExceptionHandler(InvalidFormatException exception) {
+        log.error(exception.getMessage());
+        return new ResponseEntity(new ResponseDto(-1, "요청된 Request가 format에 맞지 않습니다.", 0), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    protected ResponseEntity nullPointerExceptionHandler(NullPointerException exception) {
+        log.error(exception.getMessage());
+        return new ResponseEntity(new ResponseDto(-1, exception.getMessage(), 0), HttpStatus.BAD_REQUEST);
+    }
+
 }

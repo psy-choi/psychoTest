@@ -1,5 +1,6 @@
 package com.example.pyschoTest.test;
 
+import com.example.pyschoTest.exception.customException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,6 +16,10 @@ public class petLossDepressTest implements pyschoTest{
 
     @Override
     public Integer diagnoseTotalScore(List<?> responses) {
+        if (responses.size() != countQuestions()) {
+            throw new customException("문항 수가 알맞지 않습니다.");
+        }
+
         Integer totalScore = responses.stream()
                 .mapToInt(response -> {
                     if ((int)response <= 0 && 5 <= (int)response) {return 2;}
